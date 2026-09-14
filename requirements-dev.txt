@@ -1,0 +1,5 @@
+-r requirements.txt
+
+# Only for regenerating the README screenshots (scripts/capture_screenshots.py).
+# Drives an installed Chrome or Edge, so no browser download is needed.
+playwright==1.62.0

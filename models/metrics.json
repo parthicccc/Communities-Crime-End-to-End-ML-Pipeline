@@ -1,0 +1,456 @@
+{
+  "created_utc": "2026-09-08T08:11:08.695390+00:00",
+  "dataset": {
+    "uci_id": 183,
+    "target": "ViolentCrimesPerPop",
+    "test_folds": [
+      9,
+      10
+    ],
+    "n_rows_raw": 1994,
+    "n_rows_kept": 1994,
+    "n_features_raw": 122,
+    "n_features_kept": 100,
+    "dropped_non_predictive": [
+      "state",
+      "county",
+      "community",
+      "communityname",
+      "fold"
+    ],
+    "dropped_high_missing": [
+      "LemasGangUnitDeploy",
+      "LemasPctPolicOnPatr",
+      "LemasSwFTFieldOps",
+      "LemasSwFTFieldPerPop",
+      "LemasSwFTPerPop",
+      "LemasSwornFT",
+      "LemasTotReqPerPop",
+      "LemasTotalReq",
+      "NumKindsDrugsSeiz",
+      "OfficAssgnDrugUnits",
+      "PctPolicAsian",
+      "PctPolicBlack",
+      "PctPolicHisp",
+      "PctPolicMinor",
+      "PctPolicWhite",
+      "PolicAveOTWorked",
+      "PolicBudgPerPop",
+      "PolicCars",
+      "PolicOperBudg",
+      "PolicPerPop",
+      "PolicReqPerOffic",
+      "RacialMatchCommPol"
+    ],
+    "dropped_constant": [],
+    "max_missing_fraction": 0.5,
+    "residual_missing_cols": {
+      "OtherPerCap": 0.0005
+    }
+  },
+  "target_stats": {
+    "mean": 0.2379789368104313,
+    "std": 0.2329849017279643,
+    "min": 0.0,
+    "max": 1.0,
+    "skew": 1.522598485536617
+  },
+  "variants": {
+    "all_features": {
+      "label": "all features",
+      "best_model_name": "Ridge (sqrt target)",
+      "n_features": 100,
+      "n_train": 1596,
+      "n_test": 398,
+      "train_metrics": {
+        "rmse": 0.12858263236364406,
+        "mae": 0.084006404754346,
+        "r2": 0.7035836707097056,
+        "spearman": 0.8494689280130518
+      },
+      "test_metrics": {
+        "rmse": 0.13198202029922235,
+        "mae": 0.08692049009946451,
+        "r2": 0.6371527165421786,
+        "spearman": 0.8242159697859303
+      },
+      "leaderboard": [
+        {
+          "model": "Ridge (sqrt target)",
+          "note": "Ridge trained on sqrt(y) to counter the target's right skew.",
+          "cv_rmse": 0.13529418822262296,
+          "cv_rmse_std": 0.013966274066227764,
+          "test_rmse": 0.13198202029922235,
+          "test_mae": 0.08692049009946451,
+          "test_r2": 0.6371527165421786,
+          "test_spearman": 0.8242159697859303,
+          "best_params": {
+            "model__regressor__alpha": 16.23776739188721
+          },
+          "fit_seconds": 4.31
+        },
+        {
+          "model": "ElasticNet",
+          "note": "Blends L1 and L2; a middle ground between Ridge and Lasso.",
+          "cv_rmse": 0.13589332138832452,
+          "cv_rmse_std": 0.012731207009374277,
+          "test_rmse": 0.132231063771377,
+          "test_mae": 0.09200033791519027,
+          "test_r2": 0.6357820752380253,
+          "test_spearman": 0.8182323229117637,
+          "best_params": {
+            "model__alpha": 0.002848035868435802,
+            "model__l1_ratio": 0.1
+          },
+          "fit_seconds": 16.88
+        },
+        {
+          "model": "Lasso",
+          "note": "L1 penalty; performs feature selection by zeroing coefficients.",
+          "cv_rmse": 0.13591885748516416,
+          "cv_rmse_std": 0.012717290621591108,
+          "test_rmse": 0.13233863871707519,
+          "test_mae": 0.09216447367554366,
+          "test_r2": 0.6351892242110878,
+          "test_spearman": 0.8163150942848761,
+          "best_params": {
+            "model__alpha": 0.00026366508987303583
+          },
+          "fit_seconds": 3.55
+        },
+        {
+          "model": "Ridge",
+          "note": "L2-penalised linear model; handles the correlated census columns.",
+          "cv_rmse": 0.1360638333259655,
+          "cv_rmse_std": 0.012777089205290217,
+          "test_rmse": 0.13177666636964652,
+          "test_mae": 0.09188752506669473,
+          "test_r2": 0.6382809633707796,
+          "test_spearman": 0.8176269106854563,
+          "best_params": {
+            "model__alpha": 29.763514416313193
+          },
+          "fit_seconds": 2.48
+        },
+        {
+          "model": "Random Forest",
+          "note": "Bagged trees; captures non-linearity and interactions.",
+          "cv_rmse": 0.1371001066853027,
+          "cv_rmse_std": 0.013244794075842217,
+          "test_rmse": 0.12534273149448039,
+          "test_mae": 0.08811300679534033,
+          "test_r2": 0.672740214491728,
+          "test_spearman": 0.8251148131661489,
+          "best_params": {
+            "model__max_features": "sqrt",
+            "model__min_samples_leaf": 2
+          },
+          "fit_seconds": 75.42
+        },
+        {
+          "model": "Gradient Boosting",
+          "note": "Histogram-based boosted trees; usually the strongest tabular baseline.",
+          "cv_rmse": 0.1386817996648863,
+          "cv_rmse_std": 0.014286818104982755,
+          "test_rmse": 0.12850638217781601,
+          "test_mae": 0.08598118193823505,
+          "test_r2": 0.6560116564340072,
+          "test_spearman": 0.8275008201676312,
+          "best_params": {
+            "model__learning_rate": 0.06,
+            "model__max_leaf_nodes": 15,
+            "model__min_samples_leaf": 20
+          },
+          "fit_seconds": 10.82
+        },
+        {
+          "model": "Baseline (mean)",
+          "note": "Predicts the training mean. Any useful model must beat this.",
+          "cv_rmse": 0.23578961146633792,
+          "cv_rmse_std": 0.014566805640016172,
+          "test_rmse": 0.21950265101326255,
+          "test_mae": 0.17209732874900818,
+          "test_r2": -0.003630547556612518,
+          "test_spearman": null,
+          "best_params": {},
+          "fit_seconds": 3.89
+        }
+      ],
+      "top_features": [
+        {
+          "feature": "NumIlleg",
+          "importance": 0.01248305050080375,
+          "std": 0.0011223878505567295
+        },
+        {
+          "feature": "PctKids2Par",
+          "importance": 0.010400965088289147,
+          "std": 0.002219766261132832
+        },
+        {
+          "feature": "PctEmploy",
+          "importance": 0.008336470864758212,
+          "std": 0.0027630206584600765
+        },
+        {
+          "feature": "pctWInvInc",
+          "importance": 0.008288742996683274,
+          "std": 0.002308929884965266
+        },
+        {
+          "feature": "PctPopUnderPov",
+          "importance": 0.008247326893668791,
+          "std": 0.0013033041146456512
+        },
+        {
+          "feature": "RentLowQ",
+          "importance": 0.007517292827139407,
+          "std": 0.002311759451915681
+        },
+        {
+          "feature": "medFamInc",
+          "importance": 0.007320882145423427,
+          "std": 0.001883636979235466
+        },
+        {
+          "feature": "PctNotSpeakEnglWell",
+          "importance": 0.006848505247793285,
+          "std": 0.0017582539383665793
+        },
+        {
+          "feature": "PersPerOccupHous",
+          "importance": 0.006640321973632177,
+          "std": 0.002450491681844804
+        },
+        {
+          "feature": "racepctblack",
+          "importance": 0.006148735877323774,
+          "std": 0.0018625367071580217
+        },
+        {
+          "feature": "PctForeignBorn",
+          "importance": 0.005932309683344314,
+          "std": 0.001805894626925664
+        },
+        {
+          "feature": "MedRent",
+          "importance": 0.005028444400816079,
+          "std": 0.0014461596852139893
+        },
+        {
+          "feature": "MalePctDivorce",
+          "importance": 0.004152692000242486,
+          "std": 0.0012153285727304643
+        },
+        {
+          "feature": "agePct12t29",
+          "importance": 0.004127671506591368,
+          "std": 0.0009249731687580768
+        },
+        {
+          "feature": "PctWorkMom",
+          "importance": 0.004081416057622722,
+          "std": 0.001387057548474114
+        }
+      ]
+    },
+    "no_race_features": {
+      "label": "without race features",
+      "best_model_name": "Ridge (sqrt target)",
+      "n_features": 78,
+      "n_train": 1596,
+      "n_test": 398,
+      "train_metrics": {
+        "rmse": 0.13091492300018148,
+        "mae": 0.0854130195755451,
+        "r2": 0.6927330785625319,
+        "spearman": 0.8438193694238826
+      },
+      "test_metrics": {
+        "rmse": 0.1332254265427868,
+        "mae": 0.0864721933866809,
+        "r2": 0.6302837232800143,
+        "spearman": 0.8255608029021696
+      },
+      "leaderboard": [
+        {
+          "model": "Ridge (sqrt target)",
+          "note": "Ridge trained on sqrt(y) to counter the target's right skew.",
+          "cv_rmse": 0.13663499791025072,
+          "cv_rmse_std": 0.014493035031242283,
+          "test_rmse": 0.1332254265427868,
+          "test_mae": 0.0864721933866809,
+          "test_r2": 0.6302837232800143,
+          "test_spearman": 0.8255608029021696,
+          "best_params": {
+            "model__regressor__alpha": 1.438449888287663
+          },
+          "fit_seconds": 0.65
+        },
+        {
+          "model": "Ridge",
+          "note": "L2-penalised linear model; handles the correlated census columns.",
+          "cv_rmse": 0.138459972304933,
+          "cv_rmse_std": 0.013272028033806718,
+          "test_rmse": 0.13098395434872567,
+          "test_mae": 0.09103481055900754,
+          "test_r2": 0.6426197676033614,
+          "test_spearman": 0.8206977333849582,
+          "best_params": {
+            "model__alpha": 8.858667904100823
+          },
+          "fit_seconds": 0.69
+        },
+        {
+          "model": "ElasticNet",
+          "note": "Blends L1 and L2; a middle ground between Ridge and Lasso.",
+          "cv_rmse": 0.1385187920721861,
+          "cv_rmse_std": 0.013254801182801947,
+          "test_rmse": 0.13084087198553107,
+          "test_mae": 0.09092107408583355,
+          "test_r2": 0.6434001208842233,
+          "test_spearman": 0.8212269133221227,
+          "best_params": {
+            "model__alpha": 0.0012328467394420659,
+            "model__l1_ratio": 0.1
+          },
+          "fit_seconds": 2.31
+        },
+        {
+          "model": "Lasso",
+          "note": "L1 penalty; performs feature selection by zeroing coefficients.",
+          "cv_rmse": 0.1385601115328142,
+          "cv_rmse_std": 0.013242668747537161,
+          "test_rmse": 0.13080465220374735,
+          "test_mae": 0.09090547472849675,
+          "test_r2": 0.6435975237582643,
+          "test_spearman": 0.821633490854063,
+          "best_params": {
+            "model__alpha": 0.0001623776739188721
+          },
+          "fit_seconds": 0.92
+        },
+        {
+          "model": "Random Forest",
+          "note": "Bagged trees; captures non-linearity and interactions.",
+          "cv_rmse": 0.13901440230736725,
+          "cv_rmse_std": 0.014195504217277841,
+          "test_rmse": 0.12636733465531108,
+          "test_mae": 0.08909859593557613,
+          "test_r2": 0.6673680338557547,
+          "test_spearman": 0.82196936676789,
+          "best_params": {
+            "model__max_features": 0.3,
+            "model__min_samples_leaf": 2
+          },
+          "fit_seconds": 20.63
+        },
+        {
+          "model": "Gradient Boosting",
+          "note": "Histogram-based boosted trees; usually the strongest tabular baseline.",
+          "cv_rmse": 0.13925611505506494,
+          "cv_rmse_std": 0.014952036728209028,
+          "test_rmse": 0.12939075543178638,
+          "test_mae": 0.08650061538104473,
+          "test_r2": 0.651260750258551,
+          "test_spearman": 0.8239547066452957,
+          "best_params": {
+            "model__learning_rate": 0.06,
+            "model__max_leaf_nodes": 15,
+            "model__min_samples_leaf": 10
+          },
+          "fit_seconds": 8.29
+        },
+        {
+          "model": "Baseline (mean)",
+          "note": "Predicts the training mean. Any useful model must beat this.",
+          "cv_rmse": 0.23578961146633792,
+          "cv_rmse_std": 0.014566805640016172,
+          "test_rmse": 0.21950265101326255,
+          "test_mae": 0.17209732874900818,
+          "test_r2": -0.003630547556612518,
+          "test_spearman": null,
+          "best_params": {},
+          "fit_seconds": 0.08
+        }
+      ],
+      "top_features": [
+        {
+          "feature": "PctKids2Par",
+          "importance": 0.0904064712029681,
+          "std": 0.005045232695645954
+        },
+        {
+          "feature": "population",
+          "importance": 0.05114376452098377,
+          "std": 0.007971620284882058
+        },
+        {
+          "feature": "numbUrban",
+          "importance": 0.04936284666204589,
+          "std": 0.003550327935305257
+        },
+        {
+          "feature": "medFamInc",
+          "importance": 0.04625386481274131,
+          "std": 0.004546967335934336
+        },
+        {
+          "feature": "TotalPctDiv",
+          "importance": 0.024038479990983727,
+          "std": 0.0020048574860281184
+        },
+        {
+          "feature": "PctPersOwnOccup",
+          "importance": 0.02326992339939172,
+          "std": 0.0029687353859283554
+        },
+        {
+          "feature": "medIncome",
+          "importance": 0.02238851954122928,
+          "std": 0.004326047254857841
+        },
+        {
+          "feature": "PctHousOwnOcc",
+          "importance": 0.019588365462485244,
+          "std": 0.0013952221877430455
+        },
+        {
+          "feature": "pctWInvInc",
+          "importance": 0.01754451337279556,
+          "std": 0.003109748388622057
+        },
+        {
+          "feature": "MalePctDivorce",
+          "importance": 0.015147157442855977,
+          "std": 0.0023036304483969785
+        },
+        {
+          "feature": "OwnOccMedVal",
+          "importance": 0.013197709968903704,
+          "std": 0.0024948469063013454
+        },
+        {
+          "feature": "MedRent",
+          "importance": 0.012604991636453853,
+          "std": 0.002528393115378702
+        },
+        {
+          "feature": "PctIlleg",
+          "importance": 0.01192327500786923,
+          "std": 0.002413850059987417
+        },
+        {
+          "feature": "PersPerOccupHous",
+          "importance": 0.011551897386103144,
+          "std": 0.0031256901895419693
+        },
+        {
+          "feature": "PctFam2Par",
+          "importance": 0.011461093391613575,
+          "std": 0.001453591444760199
+        }
+      ]
+    }
+  }
+}

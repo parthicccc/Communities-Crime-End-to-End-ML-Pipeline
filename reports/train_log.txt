@@ -1,0 +1,31 @@
+﻿.\.venv\Scripts\python.exe : 13:38:36  Cleaned data: 1994 rows, 100 features (dropped 22 high-missing columns)
+At line:1 char:302
++ ...  } catch {} } }; .\.venv\Scripts\python.exe -m src.train 2>&1 | Tee-O ...
++                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (13:38:36  Clean...issing columns):String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+13:38:36  Training variant [all features]: 1596 train / 398 test rows, 100 features, 8 CV folds
+13:38:40    Baseline (mean)        CV RMSE 0.2358 (+/-0.0146)  test RMSE 0.2195  R2 -0.004  [3.9s]
+13:38:42    Ridge                  CV RMSE 0.1361 (+/-0.0128)  test RMSE 0.1318  R2 0.638  [2.5s]
+13:38:46    Lasso                  CV RMSE 0.1359 (+/-0.0127)  test RMSE 0.1323  R2 0.635  [3.6s]
+13:39:03    ElasticNet             CV RMSE 0.1359 (+/-0.0127)  test RMSE 0.1322  R2 0.636  [16.9s]
+13:39:07    Ridge (sqrt target)    CV RMSE 0.1353 (+/-0.0140)  test RMSE 0.1320  R2 0.637  [4.3s]
+13:40:22    Random Forest          CV RMSE 0.1371 (+/-0.0132)  test RMSE 0.1253  R2 0.673  [75.4s]
+13:40:33    Gradient Boosting      CV RMSE 0.1387 (+/-0.0143)  test RMSE 0.1285  R2 0.656  [10.8s]
+13:40:33    -> selected Ridge (sqrt target) (lowest CV RMSE)
+13:40:33  Training variant [without race features]: 1596 train / 398 test rows, 78 features, 8 CV folds
+13:40:33    Baseline (mean)        CV RMSE 0.2358 (+/-0.0146)  test RMSE 0.2195  R2 -0.004  [0.1s]
+13:40:34    Ridge                  CV RMSE 0.1385 (+/-0.0133)  test RMSE 0.1310  R2 0.643  [0.7s]
+13:40:35    Lasso                  CV RMSE 0.1386 (+/-0.0132)  test RMSE 0.1308  R2 0.644  [0.9s]
+13:40:37    ElasticNet             CV RMSE 0.1385 (+/-0.0133)  test RMSE 0.1308  R2 0.643  [2.3s]
+13:40:38    Ridge (sqrt target)    CV RMSE 0.1366 (+/-0.0145)  test RMSE 0.1332  R2 0.630  [0.7s]
+13:40:59    Random Forest          CV RMSE 0.1390 (+/-0.0142)  test RMSE 0.1264  R2 0.667  [20.6s]
+13:41:07    Gradient Boosting      CV RMSE 0.1393 (+/-0.0150)  test RMSE 0.1294  R2 0.651  [8.3s]
+13:41:07    -> selected Ridge (sqrt target) (lowest CV RMSE)
+13:41:08  Permutation importance computed for all_features
+13:41:08  Permutation importance computed for no_race_features
+13:41:08  Saved model bundle -> C:\Users\Parthiv 
+Bhandary\Documents\College\ResearchML\ClassActivity\models\model_bundle.joblib
+13:41:08  Saved metrics summary -> C:\Users\Parthiv 
+Bhandary\Documents\College\ResearchML\ClassActivity\models\metrics.json

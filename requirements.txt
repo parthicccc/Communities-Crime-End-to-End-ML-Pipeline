@@ -1,0 +1,21 @@
+# Pinned to the versions the committed model was trained with.
+# joblib/pickle artifacts are only guaranteed to load on the same
+# scikit-learn version; if you change these, retrain with `python -m src.train`.
+
+ucimlrepo==0.0.7
+pandas==3.0.5
+numpy==2.5.3
+scikit-learn==1.9.0
+scipy==1.18.1
+joblib==1.6.0
+pyarrow==25.0.1
+streamlit==1.63.0
+plotly==7.0.0
+
+# Required by pandas' Styler.background_gradient (shaded tables in the app).
+matplotlib==3.11.1
+
+# Verifies TLS against the OS trust store. Only matters on networks that
+# intercept TLS (campus/corporate proxies), where the UCI download otherwise
+# fails with CERTIFICATE_VERIFY_FAILED. src/data.py works without it.
+truststore==0.10.4
